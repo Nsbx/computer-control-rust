@@ -57,7 +57,9 @@ fn set_shutdown_route() -> Status {
 #[launch]
 fn rocket() -> _ {
     let figment = rocket::Config::figment()
-        .merge(("port", 5432));
+        .merge(("port", 5432))
+        .merge(("address", "0.0.0.0"))
+    ;
 
     rocket::custom(figment).mount("/", routes![
         set_mute_route,
